@@ -4,6 +4,7 @@ package it.unicam.cs.ids.filieraagricola.services;
 import it.unicam.cs.ids.filieraagricola.model.User;
 import it.unicam.cs.ids.filieraagricola.services.exception.NotFoundException;
 import it.unicam.cs.ids.filieraagricola.services.exception.ValidationException;
+import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.Optional;
