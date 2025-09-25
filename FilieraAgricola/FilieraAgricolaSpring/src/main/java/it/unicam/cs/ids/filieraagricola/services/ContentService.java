@@ -8,12 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ContentService {
 
     @Autowired
-    private ContentRepository certifications;
+    private ContentRepository contents;
 
 
     /**
@@ -21,8 +22,8 @@ public class ContentService {
      *
      * @return defensive copy of certifications list
      */
-    public List<Content> getCertifications() {
-        return certifications.findAll();
+    public List<Content> getContents() {
+        return contents.findAll();
     }
 
     /**
@@ -38,24 +39,22 @@ public class ContentService {
         String normalizedCert = certification.trim();
         Content content = new Content(null, name, normalizedCert, ContentState.PENDING);
         content.setType(type);
-        certifications.save(content);
+        contents.save(content);
     }
     /**
-     * Removes a certification from this producer's certifications.
+     * Deletes a content by id if present.
      *
-     * @param certification certification to remove
-     * @return true if the certification was removed, false if it wasn't found
+     * @return true if removed, false otherwise
      */
-    public boolean removeCertification(Content certification) {
-        if (certification == null) {
+    public boolean removeContent(String id) {
+        Content content = getContent(id);
+        if (content == null) {
             return false;
         }
-        if (certifications.findById(certification.getId()).isEmpty()) {
-            return false;
-        }
-        certifications.delete(certification);
+        contents.delete(content);
         return true;
     }
+
 
     /**
      * Checks if this producer has any certifications.
@@ -63,7 +62,7 @@ public class ContentService {
      * @return true if the producer has at least one certification
      */
     public boolean hasCertifications() {
-        return certifications.count() > 0;
+        return contents.count() > 0;
     }
 
     /**
@@ -74,7 +73,16 @@ public class ContentService {
      */
     public boolean hasCertification(Content certification) {
         if (certification == null) return false;
-        return certifications.findById(certification.getId()).isPresent();
+        return contents.findById(certification.getId()).isPresent();
+    }
+
+    /** Returns a content by id or null if not found. */
+    public Content getContent(String id) {
+        Optional<Content> opt = contents.findById(id);
+        if (opt.isPresent()) {
+            return opt.get();
+        }
+        return null;
     }
 
 }
