@@ -21,4 +21,9 @@ public class UserController {
         return userService.createUser(createUserDto.getPrototypeName(), createUserDto.getUsername(), createUserDto.getPassword(), createUserDto.getEmail());
     }
 
+    @PostMapping("/login")
+    public Boolean authenticate(@RequestBody AuthenticateDto authenticateDto) {
+        return userService.authenticate(authenticateDto.getEmail(), authenticateDto.getPassword());
+    }
+
 }

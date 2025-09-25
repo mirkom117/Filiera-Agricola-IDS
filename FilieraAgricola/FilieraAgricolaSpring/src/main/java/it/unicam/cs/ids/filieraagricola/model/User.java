@@ -1,14 +1,14 @@
 package it.unicam.cs.ids.filieraagricola.model;
 
 
+import java.util.Arrays;
+import java.util.Objects;
+import java.util.UUID;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-
-import java.util.Arrays;
-import java.util.Objects;
-import java.util.UUID;
 
 /**
  * Represents a user (actor) of the agricultural supply-chain platform.
@@ -30,18 +30,15 @@ public class User implements Prototype<User> {
     private String password;
     private String email;
     @Convert(converter = PermissionsArrayConverter.class)
-    @Column(name = "permissions", nullable = false)
-    private String[] permissions;
-    private UserRole role;
-
+    @Column(name = "permissions",nullable = false)
+    private UserRole[] permissions;
     /**
      * Default no-arg constructor for frameworks and for prototype creation.
      * All fields are initialized to default values (id = 0, others null or empty array).
      */
     public User() {
         this.id = "";
-        this.permissions = new String[0];
-        this.role = UserRole.GENERIC_USER;
+        this.permissions = new UserRole[0];
     }
 
     /**
@@ -51,22 +48,19 @@ public class User implements Prototype<User> {
      * @param name     user's display name (must not be null or empty)
      * @param password user's password (must not be null or empty)
      * @param email    user's email address (must not be null or empty)
-     * @param role     role/actor type (must not be null)
      * @throws IllegalArgumentException if name/password/email are null/empty or id is negative or role is null
      */
-    public User(String id, String name, String password, String email, UserRole role) {
+    public User(String id, String name, String password, String email) {
         validateId(id);
         validateName(name);
         validatePassword(password);
         validateEmail(email);
-        Objects.requireNonNull(role, "User role cannot be null");
 
         this.id = id;
         this.name = name.trim();
         this.password = password;
         this.email = email.trim();
-        this.permissions = new String[0];
-        this.role = role;
+        this.permissions = new UserRole[0];
     }
 
     /**
@@ -81,34 +75,7 @@ public class User implements Prototype<User> {
         this.name = other.name;
         this.password = other.password;
         this.email = other.email;
-        this.permissions = other.permissions == null ? new String[0] : Arrays.copyOf(other.permissions, other.permissions.length);
-        this.role = other.role;
-    }
-
-    private static void validateId(String id) {
-        if (id != null) {
-            throw new IllegalArgumentException("User id cannot be negative");
-        }
-    }
-
-    // ---------- Getters / Setters ----------
-
-    private static void validateName(String name) {
-        if (name == null || name.trim().isEmpty()) {
-            throw new IllegalArgumentException("User name cannot be null or empty");
-        }
-    }
-
-    private static void validatePassword(String password) {
-        if (password == null || password.isEmpty()) {
-            throw new IllegalArgumentException("Password cannot be null or empty");
-        }
-    }
-
-    private static void validateEmail(String email) {
-        if (email == null || email.trim().isEmpty()) {
-            throw new IllegalArgumentException("Email cannot be null or empty");
-        }
+        this.permissions = other.permissions == null ? new UserRole[0] : Arrays.copyOf(other.permissions, other.permissions.length);
     }
 
     /**
@@ -120,6 +87,8 @@ public class User implements Prototype<User> {
     public User clone() {
         return new User(this);
     }
+
+    // ---------- Getters / Setters ----------
 
     /**
      * Returns the numeric id of the user.
@@ -213,8 +182,8 @@ public class User implements Prototype<User> {
      *
      * @return copy of permissions (never null)
      */
-    public String[] getPermissions() {
-        return permissions == null ? new String[0] : Arrays.copyOf(permissions, permissions.length);
+    public UserRole[] getPermissions() {
+        return permissions == null ? new UserRole[0] : Arrays.copyOf(permissions, permissions.length);
     }
 
     /**
@@ -222,11 +191,9 @@ public class User implements Prototype<User> {
      *
      * @param permissions array of permission strings (may be null, treated as empty)
      */
-    public void setPermissions(String[] permissions) {
-        this.permissions = permissions == null ? new String[0] : Arrays.copyOf(permissions, permissions.length);
+    public void setPermissions(UserRole... permissions) {
+        this.permissions = permissions == null ? new UserRole[0] : Arrays.copyOf(permissions, permissions.length);
     }
-
-    // ---------- Validation helpers ----------
 
     /**
      * Adds a permission to the user's permission set.
@@ -234,14 +201,13 @@ public class User implements Prototype<User> {
      * @param permission permission string to add (must not be null or empty)
      * @throws IllegalArgumentException if permission is null or empty
      */
-    public void addPermission(String permission) {
-        if (permission == null || permission.trim().isEmpty()) {
+    public void addPermission(UserRole permission) {
+        if (permission == null ) {
             throw new IllegalArgumentException("Permission cannot be null or empty");
         }
-        String p = permission.trim();
-        String[] current = this.getPermissions();
-        String[] next = Arrays.copyOf(current, current.length + 1);
-        next[current.length] = p;
+        UserRole[] current = this.getPermissions();
+        UserRole[] next = Arrays.copyOf(current, current.length + 1);
+        next[current.length] = permission;
         this.permissions = next;
     }
 
@@ -251,18 +217,17 @@ public class User implements Prototype<User> {
      * @param permission permission string to remove (may be null)
      * @return true if removed, false otherwise
      */
-    public boolean removePermission(String permission) {
+    public boolean removePermission(UserRole permission) {
         if (permission == null || this.permissions == null || this.permissions.length == 0) return false;
-        String p = permission.trim();
         int idx = -1;
         for (int i = 0; i < permissions.length; i++) {
-            if (permissions[i] != null && permissions[i].equals(p)) {
+            if (permissions[i] != null && permissions[i].equals(permission)) {
                 idx = i;
                 break;
             }
         }
         if (idx < 0) return false;
-        String[] next = new String[permissions.length - 1];
+        UserRole[] next = new UserRole[permissions.length - 1];
         for (int i = 0, j = 0; i < permissions.length; i++) {
             if (i == idx) continue;
             next[j++] = permissions[i];
@@ -271,23 +236,42 @@ public class User implements Prototype<User> {
         return true;
     }
 
-    /**
-     * Returns the role (actor type) of this user.
-     *
-     * @return user role (never null)
-     */
-    public UserRole getRole() {
-        return role;
-    }
+
+
+    // ---------- Validation helpers ----------
 
     /**
-     * Sets the role (actor type) of this user.
+     * Validates the identifier according to the current implementation rules.
      *
-     * @param role not null
-     * @throws NullPointerException if role is null
+     * <p><b>Current behaviour:</b> throws an {@link IllegalArgumentException}
+     * when the provided id is not {@code null}. This reflects the existing
+     * implementation and is intentionally documented without altering logic.</p>
+     *
+     * @param id candidate identifier
+     * @throws IllegalArgumentException when {@code id} is not {@code null}
      */
-    public void setRole(UserRole role) {
-        this.role = Objects.requireNonNull(role, "Role cannot be null");
+    private static void validateId(String id) {
+        if (id != null) {
+            throw new IllegalArgumentException("User id cannot be negative");
+        }
+    }
+
+    private static void validateName(String name) {
+        if (name == null || name.trim().isEmpty()) {
+            throw new IllegalArgumentException("User name cannot be null or empty");
+        }
+    }
+
+    private static void validatePassword(String password) {
+        if (password == null || password.isEmpty()) {
+            throw new IllegalArgumentException("Password cannot be null or empty");
+        }
+    }
+
+    private static void validateEmail(String email) {
+        if (email == null || email.trim().isEmpty()) {
+            throw new IllegalArgumentException("Email cannot be null or empty");
+        }
     }
 
     public void giveNewId() {
@@ -335,7 +319,6 @@ public class User implements Prototype<User> {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
-                ", role=" + role +
                 ", permissions=" + Arrays.toString(permissions) +
                 '}';
     }
