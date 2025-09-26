@@ -10,9 +10,10 @@ import java.util.stream.Collectors;
 /**
  * Represents a supply chain (filiera) within the platform.
  *
- * <p>Encapsulates descriptive metadata, associated {@link Product} instances.
- * The class exposes validation helpers and simple queries (such as category aggregation)
- * while keeping state management minimal and consistent with the current implementation.</p>
+ * <p>Encapsulates descriptive metadata, associated {@link Product} instances and
+ * geolocated {@link SupplyChainPoint points}. The class exposes validation
+ * helpers and simple queries (such as category aggregation) while keeping state
+ * management minimal and consistent with the current implementation.</p>
  */
 @Entity
 public class SupplyChain  {
@@ -25,6 +26,8 @@ public class SupplyChain  {
     private List<Product> products;
     private Timestamp creationDate;
     private String territorialArea;
+    @OneToMany
+    private List<SupplyChainPoint> points;
 
 
 
@@ -483,5 +486,16 @@ public class SupplyChain  {
                 ", name='" + name + '\'' +
                 ", productsCount=" + (products == null ? 0 : products.size()) +
                 '}';
+    }
+
+
+    /** Returns the geolocated points of this supply chain. */
+    public List<SupplyChainPoint> getPoints() {
+        return points;
+    }
+
+    /** Sets the geolocated points of this supply chain. */
+    public void setPoints(List<SupplyChainPoint> points) {
+        this.points = points;
     }
 }

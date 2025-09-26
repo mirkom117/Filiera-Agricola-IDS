@@ -45,6 +45,9 @@ public class Content  {
 
     private ContentType type;
 
+    @ManyToOne
+    private SupplyChainPoint point;
+
     /**
      * Default constructor for prototype pattern.
      * Creates a new Content instance with a generated ID and PENDING state.
@@ -311,6 +314,26 @@ public class Content  {
     }
 
 
+    /**
+     * Returns the supply-chain point associated with this content.
+     *
+     * <p>When set, this link identifies the specific {@link SupplyChainPoint}
+     * (e.g., farm, market) the content refers to.</p>
+     *
+     * @return the linked {@link SupplyChainPoint}, or {@code null} if none is set
+     */
+    public SupplyChainPoint getPoint() {
+        return point;
+    }
+
+    /**
+     * Associates this content with a supply-chain point.
+     *
+     * @param point the {@link SupplyChainPoint} this content refers to (may be {@code null})
+     */
+    public void setPoint(SupplyChainPoint point) {
+        this.point = point;
+    }
 
 
 
