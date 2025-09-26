@@ -1,15 +1,14 @@
 package it.unicam.cs.ids.filieraagricola.controllers.dto;
 
 import it.unicam.cs.ids.filieraagricola.model.Product;
+import it.unicam.cs.ids.filieraagricola.model.SupplyChainPoint;
 
 import java.util.List;
 
 public class CreateSupplyChainDto {
 
 
-
     private String supplyChainName;
-
 
     public CreateSupplyChainDto() {
     }

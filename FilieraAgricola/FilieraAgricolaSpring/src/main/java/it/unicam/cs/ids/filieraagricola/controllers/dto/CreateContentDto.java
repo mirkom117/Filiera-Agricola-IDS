@@ -4,6 +4,7 @@ import it.unicam.cs.ids.filieraagricola.model.ContentType;
 
 public class CreateContentDto {
 
+    public String idSupplyChainPoint;
     private String name;
     private String description;
     private ContentType type;
@@ -35,5 +36,13 @@ public class CreateContentDto {
 
     public void setType(ContentType type) {
         this.type = type;
+    }
+
+    public String getIdSupplyChainPoint() {
+        return idSupplyChainPoint;
+    }
+
+    public void setIdSupplyChainPoint(String idSupplyChainPoint) {
+        this.idSupplyChainPoint = idSupplyChainPoint;
     }
 }
