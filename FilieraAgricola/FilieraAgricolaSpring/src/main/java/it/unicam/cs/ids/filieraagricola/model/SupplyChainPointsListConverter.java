@@ -1,9 +1,9 @@
 package it.unicam.cs.ids.filieraagricola.model;
 
-import jakarta.persistence.AttributeConverter;
-
 import java.util.LinkedList;
 import java.util.List;
+
+import jakarta.persistence.AttributeConverter;
 
 /**
  * JPA {@link AttributeConverter} mapping between a list of {@link SupplyChainPoint}
