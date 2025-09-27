@@ -5,7 +5,7 @@ import it.unicam.cs.ids.filieraagricola.model.Event;
 import it.unicam.cs.ids.filieraagricola.model.Participation;
 import it.unicam.cs.ids.filieraagricola.model.User;
 import it.unicam.cs.ids.filieraagricola.model.repositories.EventRepository;
-import it.unicam.cs.ids.filieraagricola.model.repositories.PartecipationRepository;
+import it.unicam.cs.ids.filieraagricola.model.repositories.ParticipationRepository;
 import it.unicam.cs.ids.filieraagricola.model.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,7 +25,7 @@ import java.util.UUID;
 @Service
 public class EventService {
     @Autowired
-    private PartecipationRepository partecipationRepository;
+    private ParticipationRepository participationRepository;
     @Autowired
     private EventRepository repository;
     @Autowired
@@ -70,13 +70,13 @@ public class EventService {
         if (opt.isEmpty()) {
             return new LinkedList<>();
         }
-        return partecipationRepository.findByEvent(opt.get());
+        return participationRepository.findByEvent(opt.get());
     }
 
 
     /** Returns a participation by id or null if not found. */
     public Participation getPartecipation(String id) {
-        Optional<Participation> opt = partecipationRepository.findById(id);
+        Optional<Participation> opt = participationRepository.findById(id);
         if (opt.isPresent()) {
             return opt.get();
         }
@@ -86,7 +86,7 @@ public class EventService {
     public boolean deletePartecipation(String id) {
         Participation participation = getPartecipation(id);
         if (participation != null) {
-            partecipationRepository.delete(participation);
+            participationRepository.delete(participation);
             return true;
         }
         return false;
@@ -94,13 +94,13 @@ public class EventService {
 
 
     /** Creates a new participation for the given event from a DTO. */
-    public boolean createPartecipation(String eventId, ParticipationDto partecipationDto) {
+    public boolean createPartecipation(String eventId, ParticipationDto participationDto) {
 
         Optional<Event> opt = repository.findById(eventId);
         if (opt.isEmpty()) {
             return false;
         }
-        Optional<User> optActor = userRepository.findById(partecipationDto.getActorId());
+        Optional<User> optActor = userRepository.findById(participationDto.getActorId());
         if (optActor.isEmpty()) {
             return false;
         }
@@ -110,8 +110,8 @@ public class EventService {
         participation.setEvent(opt.get());
         participation.setActor(optActor.get());
         participation.setRegistrationDate(new Timestamp(System.currentTimeMillis()));
-        participation.setRole(partecipationDto.getRole());
-        partecipationRepository.save(participation);
+        participation.setRole(participationDto.getRole());
+        participationRepository.save(participation);
         return true;
 
     }

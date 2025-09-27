@@ -72,9 +72,9 @@ public class EventController {
     }
 
     @PostMapping("/{eventId}/partecipations")
-    public ResponseEntity<Boolean> createPartecipation(@PathVariable String eventId, @RequestBody ParticipationDto partecipationDto) {
+    public ResponseEntity<Boolean> createPartecipation(@PathVariable String eventId, @RequestBody ParticipationDto participationDto) {
         if (userService.hasRole(UserRole.ANIMATOR)) {
-            return ResponseEntity.ok(service.createPartecipation(eventId, partecipationDto));
+            return ResponseEntity.ok(service.createPartecipation(eventId, participationDto));
         }
         return ResponseEntity.status(HttpStatus.FORBIDDEN).body(false);
     }

@@ -51,7 +51,7 @@ public class OrderController {
         if (!(userService.hasRole(UserRole.PRODUCER)
                 || userService.hasRole(UserRole.TRANSFORMER)
                 || userService.hasRole(UserRole.DISTRIBUTOR))) {
-        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
         }
 
         Boolean done = orderService.createOrder(orderDto);

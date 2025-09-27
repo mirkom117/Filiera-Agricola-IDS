@@ -25,7 +25,7 @@ import java.util.UUID;
  * transaction demarcation in this class.</p>
  */
 @Service
-    public class OrderService {
+public class OrderService {
 
     public static final int DEFAULT_DELIVERY_TIME = 1000 * 3600 * 24 * 4;
     @Autowired
