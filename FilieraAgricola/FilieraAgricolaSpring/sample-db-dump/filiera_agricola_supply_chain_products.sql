@@ -1,0 +1,54 @@
+-- MySQL dump 10.13  Distrib 8.0.43, for Win64 (x86_64)
+--
+-- Host: 127.0.0.1    Database: filiera_agricola
+-- ------------------------------------------------------
+-- Server version	8.0.43
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `supply_chain_products`
+--
+
+DROP TABLE IF EXISTS `supply_chain_products`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `supply_chain_products` (
+  `supply_chain_id` varchar(255) NOT NULL,
+  `products_id` varchar(255) NOT NULL,
+  UNIQUE KEY `UK5d3ss0arq4cvmacisuxe2poih` (`products_id`),
+  KEY `FKie8v3frfy4ec69lh0kb6e6c6t` (`supply_chain_id`),
+  CONSTRAINT `FKie8v3frfy4ec69lh0kb6e6c6t` FOREIGN KEY (`supply_chain_id`) REFERENCES `supply_chain` (`id`),
+  CONSTRAINT `FKsn5hq17mww5s8cxywtyoplmp9` FOREIGN KEY (`products_id`) REFERENCES `product` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `supply_chain_products`
+--
+
+LOCK TABLES `supply_chain_products` WRITE;
+/*!40000 ALTER TABLE `supply_chain_products` DISABLE KEYS */;
+INSERT INTO `supply_chain_products` VALUES ('8a8f219c-9b1a-4b1f-9c1e-9d7a2b9e6f3d','01817929-e889-4b47-ab10-18e59265f242'),('8a8f219c-9b1a-4b1f-9c1e-9d7a2b9e6f3d','07e53f14-9333-4ce4-8c85-6b45d2902373'),('8a8f219c-9b1a-4b1f-9c1e-9d7a2b9e6f3d','1353f2c5-34a8-4448-aa13-5b8782f05a9b'),('8a8f219c-9b1a-4b1f-9c1e-9d7a2b9e6f3d','174f88ac-085e-49b0-951c-c9d2f2d4e785'),('8a8f219c-9b1a-4b1f-9c1e-9d7a2b9e6f3d','182f507b-83c9-4b15-9764-1065961d5635'),('8a8f219c-9b1a-4b1f-9c1e-9d7a2b9e6f3d','18e7e108-967b-402a-9e77-94184c676d91'),('8a8f219c-9b1a-4b1f-9c1e-9d7a2b9e6f3d','25e21ae6-6cd6-44c1-9031-64d1f2b4c10a'),('8a8f219c-9b1a-4b1f-9c1e-9d7a2b9e6f3d','2a075e53-46a4-44ac-80f4-5f560e980376'),('8a8f219c-9b1a-4b1f-9c1e-9d7a2b9e6f3d','2a2b724f-ef78-430c-a681-42e72900e572'),('8a8f219c-9b1a-4b1f-9c1e-9d7a2b9e6f3d','2c079203-d2d8-4f9e-9d11-579c3b1a8d46'),('8a8f219c-9b1a-4b1f-9c1e-9d7a2b9e6f3d','2c866b15-c266-4191-bebd-d52f6f366141'),('8a8f219c-9b1a-4b1f-9c1e-9d7a2b9e6f3d','33246835-ab32-4740-b6f7-c253b74070a7'),('8a8f219c-9b1a-4b1f-9c1e-9d7a2b9e6f3d','3d29a547-3843-41dc-9d22-19e342733d83'),('8a8f219c-9b1a-4b1f-9c1e-9d7a2b9e6f3d','3f875f10-72d8-4f80-9a4f-553b93475e5b'),('8a8f219c-9b1a-4b1f-9c1e-9d7a2b9e6f3d','41459a44-484b-486f-a189-72c67c5520e7'),('8a8f219c-9b1a-4b1f-9c1e-9d7a2b9e6f3d','5868bd32-2d10-449a-8a50-61f2249c51a0'),('8a8f219c-9b1a-4b1f-9c1e-9d7a2b9e6f3d','658e3e49-8c40-449e-876e-3602521e1a5d'),('8a8f219c-9b1a-4b1f-9c1e-9d7a2b9e6f3d','658e46eb-ca60-449e-b9b3-6c8413a968fd'),('8a8f219c-9b1a-4b1f-9c1e-9d7a2b9e6f3d','6632f746-8176-4cc2-9d33-149b2de2184e'),('8a8f219c-9b1a-4b1f-9c1e-9d7a2b9e6f3d','66b1a1a5-8e4d-4d7a-b50a-e3734c2079da'),('8a8f219c-9b1a-4b1f-9c1e-9d7a2b9e6f3d','6b30f252-44ca-432d-933e-089c894c251d'),('8a8f219c-9b1a-4b1f-9c1e-9d7a2b9e6f3d','765ea49a-a3f7-4217-8fa6-ce00528fe01b'),('8a8f219c-9b1a-4b1f-9c1e-9d7a2b9e6f3d','76b92f9d-54bc-4428-a28a-85cd61c569f4'),('8a8f219c-9b1a-4b1f-9c1e-9d7a2b9e6f3d','7955c4d3-e7f0-4660-844c-293e54b67035'),('8a8f219c-9b1a-4b1f-9c1e-9d7a2b9e6f3d','7a00f22f-d00e-436d-96e9-b5f7f3693e3d'),('8a8f219c-9b1a-4b1f-9c1e-9d7a2b9e6f3d','7a95781a-6d0d-4034-8c88-75c1a84f50fe'),('8a8f219c-9b1a-4b1f-9c1e-9d7a2b9e6f3d','841b9d4e-1b3a-4467-85cd-3408e0bb87dc'),('8a8f219c-9b1a-4b1f-9c1e-9d7a2b9e6f3d','884d5c41-2a6c-486d-bd22-92167d3e098a'),('8a8f219c-9b1a-4b1f-9c1e-9d7a2b9e6f3d','88a25c38-8fa8-4a92-97b7-5f36e87a2290'),('8a8f219c-9b1a-4b1f-9c1e-9d7a2b9e6f3d','9171542f-d89f-43b3-8b77-3e5e04e9a8f4'),('8a8f219c-9b1a-4b1f-9c1e-9d7a2b9e6f3d','91a1829e-28f0-4fc7-9b2f-379e97c196f7'),('8a8f219c-9b1a-4b1f-9c1e-9d7a2b9e6f3d','91e4a3c1-799d-472e-af10-23a789a8c1f9'),('8a8f219c-9b1a-4b1f-9c1e-9d7a2b9e6f3d','98956930-b44c-473d-8dd1-1d5427d14fc8'),('8a8f219c-9b1a-4b1f-9c1e-9d7a2b9e6f3d','9f80a2b9-2c07-4229-87c2-d4b966cde4fc'),('8a8f219c-9b1a-4b1f-9c1e-9d7a2b9e6f3d','a60787e9-e31d-4050-8919-ddcc084288b7'),('8a8f219c-9b1a-4b1f-9c1e-9d7a2b9e6f3d','a6081514-633b-4892-a1b7-a06841e2e1a3'),('8a8f219c-9b1a-4b1f-9c1e-9d7a2b9e6f3d','a8d8c222-0d64-469b-9c76-577bb50041dc'),('8a8f219c-9b1a-4b1f-9c1e-9d7a2b9e6f3d','a8e8e785-5b48-406a-a1b7-b0881c1c9c43'),('8a8f219c-9b1a-4b1f-9c1e-9d7a2b9e6f3d','a9e8b628-98e9-4e08-9f37-123447b97e20'),('8a8f219c-9b1a-4b1f-9c1e-9d7a2b9e6f3d','b683dd61-5975-4303-9d95-885408a2807f'),('8a8f219c-9b1a-4b1f-9c1e-9d7a2b9e6f3d','bbbe66f9-030f-4f36-a36c-94739199343c'),('8a8f219c-9b1a-4b1f-9c1e-9d7a2b9e6f3d','bbc4e366-4131-49ba-8ef7-47d8b4f34ce1'),('8a8f219c-9b1a-4b1f-9c1e-9d7a2b9e6f3d','c0a3e87d-8152-449e-b816-c73ab777d468'),('8a8f219c-9b1a-4b1f-9c1e-9d7a2b9e6f3d','d991b5c2-f198-4c8d-ae28-0955681c20e5'),('8a8f219c-9b1a-4b1f-9c1e-9d7a2b9e6f3d','d9dd8a00-349f-4315-99d9-06a9254d3d3a'),('8a8f219c-9b1a-4b1f-9c1e-9d7a2b9e6f3d','e032f5d9-482d-4581-9b14-41d9c12239d1'),('8a8f219c-9b1a-4b1f-9c1e-9d7a2b9e6f3d','e214d058-2015-46aa-b3e3-1382414ed81e'),('8a8f219c-9b1a-4b1f-9c1e-9d7a2b9e6f3d','e56ca019-971c-4b53-b9da-0c9f132e4d0d'),('8a8f219c-9b1a-4b1f-9c1e-9d7a2b9e6f3d','f01f893d-8153-46bc-9ca0-745cdbb79ac1'),('8a8f219c-9b1a-4b1f-9c1e-9d7a2b9e6f3d','f17f1e67-d8ea-4861-a5f1-89bd226c6114'),('agriturismo_di_paganico_default_1758876844797','093b0f7c-22df-4066-9831-785408df4ad7'),('agriturismo_di_paganico_default_1758876844797','57310f39-a98f-453a-b6ed-971047dbe214'),('agriturismo_di_paganico_default_1758876844797','9b8f43b6-78d0-4110-ac59-fdf1a1043f8d'),('agriturismo_di_paganico_default_1758876844797','cd605d10-8266-4efe-9a28-2fde644ec85b'),('f4b3e2a1-c0d9-4e8f-a9b8-c7d6e5f4b3a2','07604d7c-8e4d-45fc-9a3d-4299b0c79744'),('f4b3e2a1-c0d9-4e8f-a9b8-c7d6e5f4b3a2','135339f4-2795-46b3-9602-09419b456108'),('f4b3e2a1-c0d9-4e8f-a9b8-c7d6e5f4b3a2','17154508-4e8d-4f11-9e73-b328a6411dd7'),('f4b3e2a1-c0d9-4e8f-a9b8-c7d6e5f4b3a2','18e59265-f242-49da-8ccb-071a1c97036a'),('f4b3e2a1-c0d9-4e8f-a9b8-c7d6e5f4b3a2','217278d9-2e11-4545-9851-d9333da4fdd5'),('f4b3e2a1-c0d9-4e8f-a9b8-c7d6e5f4b3a2','233b8796-0157-41ab-852b-42e185f340ee'),('f4b3e2a1-c0d9-4e8f-a9b8-c7d6e5f4b3a2','2542475e-c85d-4f05-b778-4395df3d0e90'),('f4b3e2a1-c0d9-4e8f-a9b8-c7d6e5f4b3a2','2a2b3780-e889-4b47-ab10-18e59265f242'),('f4b3e2a1-c0d9-4e8f-a9b8-c7d6e5f4b3a2','2c86685f-7f41-4c12-8703-a1824b238384'),('f4b3e2a1-c0d9-4e8f-a9b8-c7d6e5f4b3a2','3395988e-c35f-40e9-91a6-574972c83cd3'),('f4b3e2a1-c0d9-4e8f-a9b8-c7d6e5f4b3a2','3d260f84-904d-444e-a108-9df50e9641ab'),('f4b3e2a1-c0d9-4e8f-a9b8-c7d6e5f4b3a2','3f82ac84-1b15-467b-91d5-d0b8095d3119'),('f4b3e2a1-c0d9-4e8f-a9b8-c7d6e5f4b3a2','410a7479-79a6-4076-9216-3e8e21901a1d'),('f4b3e2a1-c0d9-4e8f-a9b8-c7d6e5f4b3a2','46549a1d-8cf7-4f6c-82e3-6c841e0a2991'),('f4b3e2a1-c0d9-4e8f-a9b8-c7d6e5f4b3a2','4a1c6a28-6a56-4cbe-b472-78d13e31758c'),('f4b3e2a1-c0d9-4e8f-a9b8-c7d6e5f4b3a2','52932f31-87a3-4b68-8098-b8058dd75d4a'),('f4b3e2a1-c0d9-4e8f-a9b8-c7d6e5f4b3a2','535de4f9-2c78-4389-948a-a63e6ef6d7f8'),('f4b3e2a1-c0d9-4e8f-a9b8-c7d6e5f4b3a2','58667a42-7a28-406a-a1c6-30245a448498'),('f4b3e2a1-c0d9-4e8f-a9b8-c7d6e5f4b3a2','6587c47d-08b5-4a55-89b5-c7e6c986c478'),('f4b3e2a1-c0d9-4e8f-a9b8-c7d6e5f4b3a2','6fd15c2d-905c-43f1-b956-653c0702d091'),('f4b3e2a1-c0d9-4e8f-a9b8-c7d6e5f4b3a2','79b9b4f0-b96c-48be-8f64-469b362ca169'),('f4b3e2a1-c0d9-4e8f-a9b8-c7d6e5f4b3a2','7d8cdd9d-5872-463e-b248-111ec8cd4018'),('f4b3e2a1-c0d9-4e8f-a9b8-c7d6e5f4b3a2','84dd7d5d-c697-4592-a1da-eb5ec5848e4d'),('f4b3e2a1-c0d9-4e8f-a9b8-c7d6e5f4b3a2','8843c080-60b5-4b95-a4f6-ef71b3e8e77a'),('f4b3e2a1-c0d9-4e8f-a9b8-c7d6e5f4b3a2','88496739-1667-4e6f-96a9-06f17d3b3780'),('f4b3e2a1-c0d9-4e8f-a9b8-c7d6e5f4b3a2','8ca83d03-e18e-4a6c-945f-c98f98c8c7ef'),('f4b3e2a1-c0d9-4e8f-a9b8-c7d6e5f4b3a2','91f4a957-c46c-4977-bc6d-74d3d193d0f7'),('f4b3e2a1-c0d9-4e8f-a9b8-c7d6e5f4b3a2','9ebc1c53-b09e-436f-b251-220023e3e061'),('f4b3e2a1-c0d9-4e8f-a9b8-c7d6e5f4b3a2','9f87796d-74d3-4696-98a9-4628f8f2b7a9'),('f4b3e2a1-c0d9-4e8f-a9b8-c7d6e5f4b3a2','a6fd6178-5edc-4903-a447-190f7a77b8b4'),('f4b3e2a1-c0d9-4e8f-a9b8-c7d6e5f4b3a2','a9cdb71a-db1d-4850-a47d-a42063379086'),('f4b3e2a1-c0d9-4e8f-a9b8-c7d6e5f4b3a2','bb836de5-5460-49ae-a0a3-f9fbe2a0b16a'),('f4b3e2a1-c0d9-4e8f-a9b8-c7d6e5f4b3a2','be1b5275-6a56-42d1-9f93-c351f78c8a14'),('f4b3e2a1-c0d9-4e8f-a9b8-c7d6e5f4b3a2','c2718e8d-5658-45e6-94b2-2975949a2096'),('f4b3e2a1-c0d9-4e8f-a9b8-c7d6e5f4b3a2','c271e8c7-43ca-4a0b-9304-44ed5b035a9d'),('f4b3e2a1-c0d9-4e8f-a9b8-c7d6e5f4b3a2','dbed3d6a-5421-4d37-8b5e-42c1619a9a3f'),('f4b3e2a1-c0d9-4e8f-a9b8-c7d6e5f4b3a2','ddf2cb90-2fd8-4224-ad89-2478ba014a05'),('f4b3e2a1-c0d9-4e8f-a9b8-c7d6e5f4b3a2','e446d333-e91b-4375-9ab1-a9cc0a863584'),('f4b3e2a1-c0d9-4e8f-a9b8-c7d6e5f4b3a2','e517a863-71ab-402a-91fa-4f276b911739'),('f4b3e2a1-c0d9-4e8f-a9b8-c7d6e5f4b3a2','e56877ff-51e6-4d0a-810a-3c2d4310d54a'),('f4b3e2a1-c0d9-4e8f-a9b8-c7d6e5f4b3a2','e5687cf4-b91c-4bde-8f2c-e2f4f1dbde91'),('f4b3e2a1-c0d9-4e8f-a9b8-c7d6e5f4b3a2','e568b209-7e83-4a6c-92b0-951c5eb513ea'),('f4b3e2a1-c0d9-4e8f-a9b8-c7d6e5f4b3a2','e568c09a-8f55-46ae-bc0e-c2557c664326'),('f4b3e2a1-c0d9-4e8f-a9b8-c7d6e5f4b3a2','e71665a5-c3f2-44ed-abfd-4395b2c7e0f2'),('f4b3e2a1-c0d9-4e8f-a9b8-c7d6e5f4b3a2','e7a898b9-122e-4340-9750-f8f5339c0ed9'),('f4b3e2a1-c0d9-4e8f-a9b8-c7d6e5f4b3a2','e99a8c1f-9c02-45e0-91c6-edb0e9f649bb'),('f4b3e2a1-c0d9-4e8f-a9b8-c7d6e5f4b3a2','f4520935-46aa-43d9-9520-22129e16cc59'),('f4b3e2a1-c0d9-4e8f-a9b8-c7d6e5f4b3a2','fc02196f-f232-4d08-a92b-81d39d91624c'),('società_agricola_la_rinascita_default_1758876973213','35fb6c13-c2dc-4ad1-9a38-efa9212176e8'),('società_agricola_la_rinascita_default_1758876973213','3f265d32-64c4-4374-846f-513da7240855'),('società_agricola_la_rinascita_default_1758876973213','bb34f5b4-95ec-4e4c-9d2a-a5dab44539b7'),('società_agricola_la_rinascita_default_1758876973213','da9b96ac-b08d-43a0-9216-4ef6a3784898');
+/*!40000 ALTER TABLE `supply_chain_products` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2025-09-29 10:28:06
