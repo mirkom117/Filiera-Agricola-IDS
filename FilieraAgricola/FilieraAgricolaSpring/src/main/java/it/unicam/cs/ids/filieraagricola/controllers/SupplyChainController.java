@@ -55,8 +55,13 @@ public class SupplyChainController {
         return service.getSupplyChainRepository();
     }
 
+    @GetMapping("/{supplyChainId}")
+    public SupplyChain getSupplyChain(@PathVariable String supplyChainId) {
+        return service.getSupplyChain(supplyChainId);
+    }
+
     @PostMapping("")
-    public ResponseEntity<SupplyChain> createSupplayChain(@RequestBody CreateSupplyChainDto dto) {
+    public ResponseEntity<SupplyChain> createSupplyChain(@RequestBody CreateSupplyChainDto dto) {
         if (userService.hasRole(UserRole.PRODUCER)) {
             return ResponseEntity.ok(service.createSupplyChain(dto.getSupplyChainName(), new LinkedList<>(), new LinkedList<>()));
         }

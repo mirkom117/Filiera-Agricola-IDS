@@ -84,6 +84,14 @@ public class SupplyChainService {
         SupplyChain supplyChain = opt.get();
         return supplyChain.getProducts();
     }
+    public SupplyChain getSupplyChain(String supplyChainId) {
+        Optional<SupplyChain> opt = supplyChainRepository.findById(supplyChainId);
+        if (opt.isEmpty()) {
+            return null;
+        }
+        SupplyChain supplyChain = opt.get();
+        return supplyChain;
+    }
 
     /** Returns all supply chains. */
     public List<SupplyChain> getSupplyChainRepository() {
