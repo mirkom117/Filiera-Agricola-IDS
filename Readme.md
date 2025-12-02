@@ -16,7 +16,7 @@ Che contengono una prima bozza java del progetto e la versione definitiva Spring
 
 Vedere inoltre i readme dedicati a:
 
-- [Diagrammi UML](./FilieraAgricola/Documentation/Readme.md)
+- [File Visual Paradigm](./FilieraAgricola/Documentation/Vpp/ids%20progetto.vpp)
 - [Postman](./FilieraAgricola/FilieraAgricolaSpring/postman/readme.md)
 
 Per una prova più corposa attraverso un db completo usare i file sql `.\FilieraAgricola\FilieraAgricolaSpring\sample-db-dump`
@@ -30,6 +30,7 @@ Il progetto java è stato inizialmente progettato, con l'ausilio di questi patte
 - **Prototype**: Il prototype gestisce la generazioni della tipologia degli **attori**.
 - **Bridge**: Il bridge è usato implicitamente nel pattern decorator, ad esempio, dove anziche usare una **classe astratta** si usa la composizione **classe interfaccia**.
 - **Singleton**: Il singleton è stato usato per avere un' unica istanza del sistema generale.
+- **Facade**
 
 In oltre il progetto segue un'architettura basata sul pattern MVC
 
